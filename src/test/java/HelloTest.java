@@ -35,6 +35,8 @@ public class HelloTest{
         System.out.println("Test 1 is running");
         Assertions.assertEquals(4, 1+3);
     }
+
+    @Disabled
     @DisplayName("Test 2")
     @Test
     public void test2(){
