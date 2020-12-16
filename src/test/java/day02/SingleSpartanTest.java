@@ -24,9 +24,19 @@ public class SingleSpartanTest {
         reset();
     }
 
-    @DisplayName("Testing / api / spartan/ {id} endpoint")
+    @DisplayName("Testing GET spartans/ {id} endpoint")
     @Test
     public void test1Spartan(){
+        // I want to get Json result out
+        // When I send Get request to /spartans/{id} endpoint
+        // and expecting 200 status code
+        given()
+                .accept(ContentType.JSON).
+
+        when()
+                .get("/spartans/105").
+        then()
+                .statusCode(is (200))   ;
 
     }
 
