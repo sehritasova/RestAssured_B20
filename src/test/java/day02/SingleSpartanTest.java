@@ -14,28 +14,28 @@ import static org.hamcrest.Matchers.* ;
 public class SingleSpartanTest {
 
     @BeforeAll
-    public static void setUp(){
+    public static void setUp() {
         baseURI = "http://100.26.101.158:8000";
         basePath = "/api";
     }
 
     @AfterAll
-    public static void tearDown(){
+    public static void tearDown() {
         reset();
     }
 
     @DisplayName("Testing GET spartans/ {id} endpoint")
     @Test
-    public void test1Spartan(){
+    public void test1Spartan() {
         // I want to get Json result out
         // When I send Get request to /spartans/{id} endpoint
         // and expecting 200 status code
         given()
                 .accept(ContentType.JSON).
-        when()
+                when()
                 .get("/spartans/105").
-        then()
-                .statusCode(is (200))
+                then()
+                .statusCode(is(200))
                 .contentType(ContentType.JSON)
         ;
 
@@ -44,13 +44,12 @@ public class SingleSpartanTest {
         // to uniquely identify the resource
 
 
-
         given()
                 .accept(ContentType.JSON)
                 .pathParam("id", 105).
-        when()
+                when()
                 .get("/spartans/{id}").
-        then()
+                then()
 
                 .statusCode(is(200))
                 .contentType(ContentType.JSON)
@@ -58,21 +57,44 @@ public class SingleSpartanTest {
         ;
 
 
-    // this is the easiest one, same result
+        // this is the easiest one, same result
         given()
                 .accept(ContentType.JSON).
-        when()
+                when()
                 .get("/spartans/{id}", 100).
 
-        then()
+                then()
                 .statusCode(is(200))
                 .contentType(ContentType.JSON)
         ;
-
-
 
 
     }
 
+    @DisplayName("Testing GET spartans/ {id} endpoint Payload")
+    @Test
+    public void test1SpartanPayload() {
+        /**
+         * {
+         *   "id": 100,
+         *   "name": "SpartanX",
+         *   "gender": "Female",
+         *   "phone": 9999999999
+         * }
+         */
 
+
+        given()
+                .accept(ContentType.JSON).
+        when()
+                .get("/spartans/{id}", 100).
+        then()
+                .statusCode(is(200))
+                .contentType(ContentType.JSON)
+                .body("id", is(105))
+                .body("name", equalTo("SpartanX"))
+                .body("gender", is(equalTo("Female")) )
+                .body("phone", equalTo(9999999999L))
+        ;
+    }
 }
