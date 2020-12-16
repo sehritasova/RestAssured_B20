@@ -46,6 +46,7 @@ public class SpartanTest {
          *
          * then
          *  --- ValidatableResponse
+         *      This is where we can do validation
          *      validate status code, header , payload, cookie
          *      responseTime
          *
@@ -55,10 +56,26 @@ public class SpartanTest {
         when()
                 .get("http://100.26.101.158:8000/api/spartans").
         then()
+             // .assertThat() // this is not required, but can be added to make it obvious that this is where we star
+                // assertions
                 .statusCode(200)
+            //  .and() this is not required at all, just for readability, optional
                 .header("Content-Type","application/xml")
-
         ;
+
+        // this will do same exact thing as above in slightly different way
+        // since accept header and content type header is so common, RestAssured has good support or
+        // those header by providing method directly rather than using header method we used above
+        given()
+                .accept(ContentType.XML).
+        when()
+                .get("http://100.26.101.158:8000/api/spartans").
+        then()
+            .assertThat()
+            .statusCode(is (200)  )
+            .and()
+            .contentType(ContentType.XML) ;
+
 
 
 
