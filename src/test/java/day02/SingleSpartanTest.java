@@ -32,11 +32,45 @@ public class SingleSpartanTest {
         // and expecting 200 status code
         given()
                 .accept(ContentType.JSON).
-
         when()
                 .get("/spartans/105").
         then()
-                .statusCode(is (200))   ;
+                .statusCode(is (200))
+                .contentType(ContentType.JSON)
+        ;
+
+        // I want to make it obvious for
+        // the value 100 is path variable|params
+        // to uniquely identify the resource
+
+
+
+        given()
+                .accept(ContentType.JSON)
+                .pathParam("id", 105).
+        when()
+                .get("/spartans/{id}").
+        then()
+
+                .statusCode(is(200))
+                .contentType(ContentType.JSON)
+
+        ;
+
+
+    // this is the easiest one, same result
+        given()
+                .accept(ContentType.JSON).
+        when()
+                .get("/spartans/{id}", 100).
+
+        then()
+                .statusCode(is(200))
+                .contentType(ContentType.JSON)
+        ;
+
+
+
 
     }
 
