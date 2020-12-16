@@ -31,6 +31,33 @@ public class SpartanTest {
     @Test
     public void testGetAllSpartanXML() {
 
+        /**
+         * given
+         *  --- RequestSpecification
+         *      used to provide additional information about the request
+         *      base url base path
+         *      header , query params, path variable, payload
+         *      authentication authorization
+         *      logging, cookie
+         * when
+         *  --- This is where you actually send the request with http method
+         *      like GET POST PUT DELETE .. with the URL
+         *      you get Response Object after sending the request
+         *
+         * then
+         *  --- ValidatableResponse
+         *      validate status code, header , payload, cookie
+         *      responseTime
+         *
+         */
+        given()
+                .header("accept", "application/xml").
+        when()
+                .get("http://100.26.101.158:8000/api/spartans").
+        then()
+                .statusCode(200) ;
+
+
 
 
 
