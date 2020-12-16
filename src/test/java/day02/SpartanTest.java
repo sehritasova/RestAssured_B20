@@ -55,7 +55,10 @@ public class SpartanTest {
         when()
                 .get("http://100.26.101.158:8000/api/spartans").
         then()
-                .statusCode(200) ;
+                .statusCode(200)
+                .header("Content-Type","application/xml")
+
+        ;
 
 
 
