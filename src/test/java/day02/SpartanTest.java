@@ -1,7 +1,9 @@
 package day02;
 
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +12,18 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.* ;
 
 public class SpartanTest {
+
+    @BeforeAll
+    public static void setUp(){
+
+       RestAssured.baseURI ="http://100.26.101.158:8000";
+        RestAssured.basePath= "/api" ;
+        // baseURI + basePath + whatever you provided in http method like get post
+        // for example :
+        // get("/spartans") -- >> get (baseURI + basePath + "/spartans")
+
+    }
+
     @DisplayName("Testing /api/spartans endpoint")
     @Test
     public void testGetAllSpartan() {
@@ -19,7 +33,7 @@ public class SpartanTest {
         // try to assert the status code
         // content type header
 
-        Response response = get("http://100.26.101.158:8000/api/spartans");
+        Response response = get("/spartans");
         response.prettyPrint();
 
         assertThat(response.statusCode(), is(200));
@@ -69,7 +83,7 @@ public class SpartanTest {
         given()
                 .accept(ContentType.XML).
         when()
-                .get("http://100.26.101.158:8000/api/spartans").
+                .get("/spartans").
         then()
             .assertThat()
             .statusCode(is (200)  )
