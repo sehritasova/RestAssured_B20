@@ -56,6 +56,26 @@ public class JsonPathIntro {
         System.out.println("myGender = " + myGender);
         System.out.println("myPhone = " + myPhone);
 
+    }
+
+
+    @DisplayName("Extracting data from Json Array Response")
+    @Test
+    public void getAllSpartanExtractData(){
+
+        //Response response = get("/spartans");
+        //JsonPath jp = response.jsonPath();
+
+        JsonPath jp = get("/spartans").jsonPath();
+
+        // get the first json object name field and phone field
+        System.out.println("jp.getString(\"name[0]\") = " + jp.getString("name[0]"));
+        System.out.println("jp.getLong(\"phone[0]\") = " + jp.getLong("phone[0]"));
+
+
+        // get the 7th json object gender field from json array
+
+        System.out.println("jp.getString(\"gender[6]\") = " + jp.getString("gender[6]"));
 
     }
 
