@@ -88,17 +88,31 @@ public class JsonPathIntro {
         List <Long > allPhones = jp.getList("phone");
         System.out.println("allPhones = " + allPhones);
 
+    }
+
+    // send request to this request url
+    // http://100.26.101.158:8000/api/spartans/search?nameContains=de&gender=Male
+    // get the name of first guy in the result
+    // get the phone of 3rd guy in the result
+    // get all names , all phones save it as list
+    // save the value of field called empty under pageable in the response
+    // print it out
+    @DisplayName("Testing /spartans/search and extracting data")
+    @Test
+    public void testSearch() {
+
+        JsonPath jp = given()
+                            .queryParam("nameContains", "de")
+                            .queryParam("gender", "Male").
+                      when()
+                            .get("/spartans/search")
+                            .jsonPath() ;
+
+        System.out.println("first guy name " + jp.getString("content[0].name"));
+
 
     }
 
 
 
-
-
-
-
-
-
-
-
-}
+    }
