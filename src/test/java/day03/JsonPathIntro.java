@@ -110,6 +110,15 @@ public class JsonPathIntro {
 
         System.out.println("first guy name " + jp.getString("content[0].name"));
 
+        System.out.println("third guy phone number " +
+                jp.getLong("content[2].phone")  );
+
+        System.out.println("allNames " + jp.getList("content.name"));
+        System.out.println("allPhones " + jp.getList("content.phone"));
+
+        System.out.println("value of field empty " +
+                jp.getBoolean("pageable.sort.empty") );
+
 
     }
 
