@@ -47,11 +47,17 @@ public class OpenMovieDB_Test{
                 .queryParam("t", "John Wick")
                 // logging the request should be in given section
                 .log().all().
+ //              .log().uri().
+ //              .log().params().
+
         when()
                 .get().
         then()
         // logging the response should be in then section
-                .log().all()
+ //              .log().all()
+ //               .log().status()
+//                .log().body()
+                .log().ifValidationFails()
                 .statusCode(is(200))
                 .body("Plot", containsString("ex-hit-man"))
                 // second Ratings source is Rotten Tomato
