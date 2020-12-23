@@ -38,6 +38,36 @@ public class SpartanAddingTest {
                 .statusCode( is(200) ) ;
 
     }
+    @DisplayName("Add 1 Data with Raw Json String POST/api/spartans")
+    @Test
+    public void testAddOneData(){
+       /*
+            {
+                "name": "Gulbadan",
+                "gender": "Male",
+                "phone": 9876543210
+            }
+         */
+
+        String newSpartanStr =  "    {\n" +
+                                "        \"name\": \"Gulbadan\",\n" +
+                                "        \"gender\": \"Male\",\n" +
+                                "        \"phone\": 9876543210\n" +
+                                "    }" ;
+        System.out.println(newSpartanStr);
+
+
+        given()
+                .log().all()
+                .auth().basic("admin","admin")
+                .contentType(ContentType.JSON)
+                .body(newSpartanStr).
+        when()
+                .post("/spartans").
+        then()
+                .log().all()
+                .statusCode(is(201))   ;
+    }
 
 
 
