@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.* ;
 
 public class OpenMovieDB_Test{
 
-    // http://www.omdbapi.com/?t=The Orville&api=5b5d0fe8
+    // http://www.omdbapi.com/?t=The Orville&apiKey=5b5d0fe8
 
     @BeforeAll
     public static void setUp(){
@@ -23,6 +23,20 @@ public class OpenMovieDB_Test{
     @DisplayName("Test Search Movie or OpenMovieDB Test")
     @Test
     public void testMovie(){
+
+        given()
+                .queryParam("apiKey","5b5d0fe8" )
+                .queryParam("t", "The Orville").
+        when()
+                .get().   // our request URL is already complete , do not need to add anything here
+        then()
+                .statusCode(is(200))
+                .contentType(ContentType.JSON)
+                .body("Title" , is("The Orville"))
+                .body("Ratings[0].Source" , is("Internet Movie Database") )
+
+        ;
+
 
     }
 
