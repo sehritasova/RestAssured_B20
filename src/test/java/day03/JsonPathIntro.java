@@ -77,6 +77,11 @@ public class JsonPathIntro {
 
         System.out.println("jp.getString(\"gender[6]\") = " + jp.getString("gender[6]"));
 
+        // get the last json object name field
+        System.out.println("jp.getString(\"name[-1]\") = "
+                + jp.getString("name[-1]"));
+
+
         // getting all the name fields from the jsonArray Response
         // and storing as a list
         List <String> allNames =  jp.getList("name");
