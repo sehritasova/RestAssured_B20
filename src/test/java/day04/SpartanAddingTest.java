@@ -66,7 +66,18 @@ public class SpartanAddingTest {
                 .post("/spartans").
         then()
                 .log().all()
-                .statusCode(is(201))   ;
+                .assertThat()
+                .statusCode( is(201) )
+                .contentType(ContentType.JSON)
+                .body("success" , is("A Spartan is Born!") )
+                .body("data.name" ,  is("Gulbadan")  )
+                .body("data.gender" ,  is("Male")  )
+                .body("data.phone" ,  is(9876543210L)  )
+
+
+
+
+        ;
     }
 
 
