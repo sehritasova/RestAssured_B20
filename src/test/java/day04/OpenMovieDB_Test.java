@@ -13,8 +13,20 @@ public class OpenMovieDB_Test{
 
     @BeforeAll
     public static void setUp(){
+        baseURI = "http://www.omdbapi.com";
 
     }
+    @AfterAll
+    public static void tearDown(){
+        reset();
+    }
+    @DisplayName("Test Search Movie or OpenMovieDB Test")
+    @Test
+    public void testMovie(){
+
+    }
+
+
 
 
 
