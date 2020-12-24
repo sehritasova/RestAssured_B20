@@ -55,13 +55,13 @@ public class SpartanUpdatingTest {
 
     @DisplayName("Testing PATCH /api/spartans/{id} with String body")
     @Test
-    public void testPartialUpdatingSingleSpartanWithStringBody(){
+    public void testPartialUpdatingSingleSpartanWithStringBody() {
 
         // update the name to B20 Patched
         // {"name" : "B20 Patched"}
         String patchBody = "{\"name\" : \"B20 Patched\"}";
 
-
+    }
 
 
 
