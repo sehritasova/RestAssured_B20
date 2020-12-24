@@ -16,4 +16,14 @@ public class LibraryAppTest {
     public static void tearDown(){
         reset();
     }
+
+    @DisplayName("Testing POST /login Endpoint")
+    @Test
+    public void testLogin() {
+        /*
+        Librarian1  email	librarian69@library
+        Librarian1  password		KNPXrm3S
+         */
+
+    }
 }
