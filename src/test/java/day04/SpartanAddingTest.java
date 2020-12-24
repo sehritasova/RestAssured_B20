@@ -105,12 +105,44 @@ public class SpartanAddingTest {
                 .body("data.phone" ,  is(9876543210L)  )
         ;
 
+    }
 
+    @DisplayName("Add 1 Data with External json file POST /api/spartans")
+    @Test
+    public void testAddOneDataWithJsonFileAsBody() {
 
+        // Create a file called singleSpartan.json right under root directory
+        // with below content
+        /*
+        {
+            "name": "Olivia",
+            "gender": "Female",
+            "phone": 6549873210
+        }
+        add below code to point File object to this singleSpartan.json
+         */
+
+        File externalJson = new File("singleSpartan.json");
+
+        given()
+                .auth().basic("admin","admin")
+                .log().all()
+                .contentType(ContentType.JSON)
+                .body( externalJson ).
+        when()
+                .post("/spartans").
+        then()
+                .log().all()
+                .statusCode( is(201) )
+                .contentType(ContentType.JSON)
+                .body("success" , is("A Spartan is Born!") )
+                .body("data.name" ,  is("Olivia")  )
+                .body("data.gender" ,  is("Female")  )
+                .body("data.phone" ,  is(6549873210L)  )
+        ;
 
 
     }
-
 
 
 
