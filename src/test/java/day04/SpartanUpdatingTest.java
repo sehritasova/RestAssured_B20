@@ -59,7 +59,23 @@ public class SpartanUpdatingTest {
 
         // update the name to B20 Patched
         // {"name" : "B20 Patched"}
-        String patchBody = "{\"name\" : \"B20 Patched\"}";
+        String patchBody = "{\"name\" : \"20 Patched\"}";
+        given()
+                .auth().basic("admin","admin")
+                .log().all()
+                .pathParam("id",87)
+                .contentType(ContentType.JSON)
+                .body(patchBody).
+        when()
+                .patch("/spartans/{id}").
+        then()
+                .log().all()
+                .assertThat()
+                .statusCode( is(204))
+                // body for 204 response is always empty
+                // we can validate it using emptyString() matcher
+                .body( emptyString() )
+        ;
 
     }
 
