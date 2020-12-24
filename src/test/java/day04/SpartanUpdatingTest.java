@@ -59,11 +59,11 @@ public class SpartanUpdatingTest {
 
         // update the name to B20 Patched
         // {"name" : "B20 Patched"}
-        String patchBody = "{\"name\" : \"20 Patched\"}";
+        String patchBody = "{\"name\" : \"B20 Patched\"}";
         given()
                 .auth().basic("admin","admin")
                 .log().all()
-                .pathParam("id",87)
+                .pathParam("id",880)
                 .contentType(ContentType.JSON)
                 .body(patchBody).
         when()
@@ -76,11 +76,17 @@ public class SpartanUpdatingTest {
                 // we can validate it using emptyString() matcher
                 .body( emptyString() )
         ;
-
     }
 
 
 
+    @DisplayName("Testing Delete /api/spartans/{id}")
+    @Test
+    public void testDeletingSingleSpartan() {
+
+
+
+    }
 
 
     }
