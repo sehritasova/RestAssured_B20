@@ -27,6 +27,29 @@ public class SpartanUpdatingTest {
     @Test
     public void testUpdatingSingleSpartanWithStringBody() {
 
+        String updateStrPayload =  "    {\n" +
+                "        \"name\": \"B20 Vola\",\n" +
+                "        \"gender\": \"Male\",\n" +
+                "        \"phone\": 9876543210\n" +
+                "    }" ;
+
+        given()
+                .log().all()
+                .auth().basic("admin","admin")
+                .contentType(ContentType.JSON)
+                .pathParam("id", 87)
+                .body(updateStrPayload).
+        when()
+                .put("/spartans/{id}").
+        then()
+                .log().all()
+                .assertThat()
+                .statusCode( is(204))
+                // This is how we can check a header exists by checking the value is not null
+                // using notNullValue() matcher
+                .header("Date", is(notNullValue() ) )
+                .body( emptyString() )
+        ;
 
     }
 
