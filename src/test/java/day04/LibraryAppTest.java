@@ -6,6 +6,8 @@ import static org.hamcrest.Matchers.* ;
 
 public class LibraryAppTest {
 
+    private static String myToken ;
+
     @BeforeAll
     public static void setUp(){
         baseURI = "http://library1.cybertekschool.com";
@@ -25,7 +27,7 @@ public class LibraryAppTest {
         Librarian1  password		KNPXrm3S
          */
 
-       String myToken =
+        myToken =
                 given()
                         .log().all()
                         .contentType( ContentType.URLENC  )
@@ -51,10 +53,19 @@ public class LibraryAppTest {
 
     @DisplayName("Testing GET /dashboard_stats Endpoint")
     @Test
-    public void testDashboard_stats(){
-
-
-
+    public void testzDashboard_stats(){
+        //      this is how we provide header .header("headerName","headerValue")
+        given()
+                .log().all()
+                .header("x-library-token",myToken).
+        when()
+                .get("/dashboard_stats").
+        then()
+                .log().all()
+                .assertThat()
+                .statusCode( is(200) )
+                .contentType(ContentType.JSON)
+        ;
 
     }
 
