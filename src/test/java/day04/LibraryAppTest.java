@@ -49,6 +49,15 @@ public class LibraryAppTest {
         // without breaking the chain -->> use extract() method that return
     }
 
+    @DisplayName("Testing GET /dashboard_stats Endpoint")
+    @Test
+    public void testDashboard_stats(){
+
+
+
+
+    }
+
 
 
 }
