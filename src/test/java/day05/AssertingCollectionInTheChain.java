@@ -44,9 +44,9 @@ public class AssertingCollectionInTheChain {
                 .auth().basic("admin", "admin")
                 .queryParam("nameContains", "a")
                 .queryParam("gender", "Female").
-                when()
+        when()
                 .get("/spartans/search").
-                then()
+        then()
                 .log().all()
                 .assertThat()
                 .statusCode(is(200))
