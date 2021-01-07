@@ -28,6 +28,40 @@ public class ExtractPractice {
     @Test
     public void testSearchAndExtractData(){
 
+        // search for nameContains : a , gender Female
+        // verify status code is 200
+        // extract jsonPath object after validation
+        // use that jsonPath object to get the list of all results
+        // and get the numberOfElements field value
+        // compare those 2
+
+        JsonPath jp = given()
+                              .log().all()
+                              .auth().basic("admin", "admin")
+                              .queryParam("nameContains", "a")
+                              .queryParam("gender", "Female").
+                      when()
+                              .get("/spartans/search").
+                      then()
+                              .log().all()
+                              .assertThat()
+                              .statusCode(is(200))
+                              .extract()
+                              .jsonPath();
+        // get the list of all names in String
+        List<String> allNames =  jp.getList("content.name");
+        System.out.println("allNames = " + allNames);
+        // we are getting numberOfElements field from json result
+        // since it's a top level key , json path will be just numberOfElements
+        int numOfElements = jp.getInt("numberOfElements");
+        System.out.println("numOfElements = " + numOfElements);
+        // verifying the numOfElements match the size of list we got
+        // assertThat(numOfElements , equalTo( allNames.size() )    );
+        assertThat(allNames.size()  , equalTo( numOfElements )    );
+
+        // using hamcrest matcher collection support for asserting the list size
+        assertThat( allNames , hasSize(numOfElements) );
+
 
 
 
