@@ -124,16 +124,37 @@ public class Spartan_E2E_HappyPath {
         ;
 
     }
+    @DisplayName("4. Testing DELETE /api/spartans/{id} Endpoint")
+    @Test
+    public void testDelete1SpartanData(){
 
+        given()
+                .auth().basic("admin","admin")
+                .pathParam("id" , newID)
+                .log().all().
+        when()
+                .delete("/spartans/{id}").
+        then()
+                .log().all()
+                .assertThat()
+                .statusCode( is(204) )
+                .body( emptyString() ) ;
 
-
-
-
-
-
-
-
-
-
+        // in order to make sure the delete actually happened
+        // i want to make another get request to this ID expect 404
+        given()
+                .auth().basic("admin","admin")
+                .pathParam("id" , newID)
+                .log().all().
+        when()
+                .get("/spartans/{id}").
+        then()
+                .log().all()
+                .assertThat()
+                .statusCode( is (404) ) ;
 
     }
+
+
+
+}
