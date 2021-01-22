@@ -12,6 +12,7 @@ import utility.SpartanUtil;
 import java.util.Map;
 
 @TestMethodOrder(MethodOrderer.DisplayName.class)
+@DisplayName("Spartan App End to End Crud Happy Path")
 public class Spartan_E2E_HappyPath {
 
     private static Map<String,Object> payloadMap ;

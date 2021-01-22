@@ -15,7 +15,7 @@ public class SingleSpartanTest {
 
     @BeforeAll
     public static void setUp() {
-        baseURI = "http://100.26.101.158:8000";
+        baseURI = "http://52.201.187.226:8000";
         basePath = "/api";
     }
 
@@ -33,7 +33,7 @@ public class SingleSpartanTest {
         given()
                 .accept(ContentType.JSON).
                 when()
-                .get("/spartans/105").
+                .get("/spartans/100").
                 then()
                 .statusCode(is(200))
                 .contentType(ContentType.JSON)
